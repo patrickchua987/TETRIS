@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/TETRIS/static/css/main.0ca2ba4c.css",
+    "main.js": "/TETRIS/static/js/main.bde65f05.js",
+    "static/js/845.1f8c450c.chunk.js": "/TETRIS/static/js/845.1f8c450c.chunk.js",
+    "static/media/Komiku.mp3": "/TETRIS/static/media/Komiku.3f9622d15dee35567c72.mp3",
+    "static/media/gameover.wav": "/TETRIS/static/media/gameover.78eedb0042e02c4d4c60.wav",
+    "static/media/good.mp3": "/TETRIS/static/media/good.3dc7891ed3559e8d9f6a.mp3",
+    "static/media/music.mp3": "/TETRIS/static/media/music.e7b17ab4d625ecc8ce10.mp3",
+    "static/media/golf.mp3": "/TETRIS/static/media/golf.69af821f7ccfb5b5c1bc.mp3",
+    "index.html": "/TETRIS/index.html",
+    "main.0ca2ba4c.css.map": "/TETRIS/static/css/main.0ca2ba4c.css.map",
+    "main.bde65f05.js.map": "/TETRIS/static/js/main.bde65f05.js.map",
+    "845.1f8c450c.chunk.js.map": "/TETRIS/static/js/845.1f8c450c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0ca2ba4c.css",
+    "static/js/main.bde65f05.js"
+  ]
+}
