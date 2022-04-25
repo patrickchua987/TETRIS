@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 
-const useGetBGcolor = () => {
-  //const { arrtemp } = props;
-
+const useGetBGcolor = (props) => {
   var bgcolor = "";
 
-  function getBackgroundColor({ props }) {
-    console.log(props);
-    //const { row, column } = props;
-    //const arrtemp = [];
-
-    console.log("chk", props);
+  function GetBackgroundColor3({ props }) {
     switch (props) {
       case "H":
         bgcolor = "white";
@@ -37,7 +30,7 @@ const useGetBGcolor = () => {
         bgcolor = "#2587be";
         break;
       case "I":
-        bgcolor = "#c842a3";
+        bgcolor = "#2bb534";
         break;
       case "E":
         bgcolor = "#3dc0c0";
@@ -46,9 +39,10 @@ const useGetBGcolor = () => {
         bgcolor = "#1e003e";
         break;
     }
-    // }
+    return bgcolor;
   }
-  return { bgcolor, getBackgroundColor };
+
+  return { bgcolor, GetBackgroundColor3 };
 };
 
 export default useGetBGcolor;

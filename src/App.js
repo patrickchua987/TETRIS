@@ -5,33 +5,42 @@ import "./App.css";
 import { consthook } from "./components/consthook/consthook";
 import Home from "./components/Home";
 import Sidemenu from "./components/sidemenu/sidemenu";
-//import useGetBGcolor from "./components/useCustomHook/useGetBGcolor";
-//import useWindowDimensions from "./components/useWindowDimensions";
+import Main from "./components/Main/Main";
+import useGetBGcolor from "./components/useCustomHook/useGetBGcolor";
+import {
+  startflagContext,
+  gameoverflagContext,
+  windowwidthContext,
+  screenTypeContext,
+} from "./components/useCustomHook/Context";
+//import { gameoverflagContext } from "./components/useCustomHook/Context";
 
-// sound hooks
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useSound from "use-sound";
 import useKeyPress from "./usekeyPress";
-//import line from "../src/sound/line.wav";
-//import clearmp3 from "../src/sound/clear.wav";
 import gameover from "../src/sound/gameover.wav";
 import goodmp3 from "../src/sound/good.mp3";
 import golfmp3 from "../src/sound/golf.mp3";
-//import komiku from "../src/sound/Komiku.mp3";
 import komiku from "../src/components/sound/Komiku.mp3";
 import musicmp3 from "../src/sound/music.mp3";
+//import drumBank from "./components/consthook/consthook";
+//import useWindowDimensions from "./components/useWindowDimensions";
+//import line from "../src/sound/line.wav";
+//import clearmp3 from "../src/sound/clear.wav";
+//import komiku from "../src/sound/Komiku.mp3";
+// sound hooks
 
 function App() {
+  const [startflag, setstartflag] = useState(false);
+  const { bgcolor, GetBackgroundColor3 } = useGetBGcolor();
   const [shapearrctr, setshapearrctr] = useState([[0], [0], [0]]);
   const [arr, setarr] = useState(consthook.PIECEARR.arrdefault);
-  const [startflag, setstartflag] = useState(false);
   const [arrcopy, setarrcopy] = useState(consthook.PIECEARR.arrdefault);
   const [removerowctr, setremoverowctr] = useState(false);
   const [windowwidth, setWindowwidth] = useState(window.innerWidth);
   const [screenType, setScreenType] = useState("INITIAL");
   const [muteflag, setMuteflag] = useState(true);
   const [selected, setSelected] = useState(null);
-  // const [playsound, setplaysound] = useState(false);
   const [gameoverflag, setgameoverflag] = useState(false);
   const [startbuttonflag, setstartbuttonflag] = useState(true);
   const [boardData, setBoardData] = useState(
@@ -40,14 +49,13 @@ function App() {
   const [score, setscore] = useState(0);
   const [dropspeed, setdropspeed] = useState(300);
   const [maxdropspeed, setmaxdropspeed] = useState(300);
-  //const rot = boardData ? boardData.rotb : 0;
   const [piecectr, setpiecectr] = useState(0);
   const [ypos, setYpos] = useState(boardData ? boardData.yposb : 0);
   const [xpos, setxpos] = useState(boardData ? boardData.xposb : 0);
   const [holdflag, setholdflag] = useState(true);
   const pressEvent = useKeyPress();
   const [yshadow, setyshadow] = useState(0);
-
+  // const [playsound, setplaysound] = useState(false);
   const refreshPage = () => {
     const timer5 = setTimeout(() => {
       setstartflag(false);
@@ -225,86 +233,10 @@ function App() {
     clearstorage();
   }, []);
 
-  /*
-  function spuntile() {
-    let shapearrtemp = shapearr;
-    let shapearrctrtemp = shapearrctr;
-    let boardData = JSON.parse(localStorage.getItem("board-data"));
-    // move shape in array 0 to stage
-    let piecectr3 = 0;
-    piece = shapearr[0];
-    //  piecectr = shapearrctr[0];
-    setpiecectr(shapearrctr[0]);
-    piecectr3 = shapearrctr[0];
-    // splice array 0
-    shapearrtemp.splice(0, 1);
-    shapearrctrtemp.splice(0, 1);
-    // get new shape and push to array
-    var randomShape =
-      consthook.PIECE.shape[
-        Math.floor(Math.random() * consthook.PIECE.shape.length)
-      ];
-    let piecectr2 = 0;
-    piecectr2 = consthook.PIECE.shape.indexOf(randomShape);
-    let piece2 = [];
-    piece2 = getpiece(piecectr2);
-    shapearrtemp.push(piece2);
-    shapearrctrtemp.push(piecectr2);
-
-    setshapearr(shapearrtemp);
-    setshapearrctr(shapearrctrtemp);
-
-    setshapearr1(shapearr[0]);
-    setshapearr2(shapearr[1]);
-    setshapearr3(shapearr[2]);
-
-    let newBoardData = {
-      ...boardData,
-      xposb: 0,
-      yposb: 0,
-      rotb: 0,
-      arrcopyb: consthook.PIECEARR.arrdefault,
-      currentpiecenumb: piecectr3, //piecectr,
-      currentpieceb: piece,
-      currentarr: arr,
-    };
-    setBoardData(newBoardData);
-    localStorage.setItem("board-data", JSON.stringify(newBoardData));
-    undrawtile();
-    drawtile();
-  }
-*/
-
   function getpiece(piecectr) {
     let piecetemp2 = [];
-    switch (piecectr) {
-      case 0:
-        piecetemp2 = consthook.PIECEARR.piece0;
-        break;
-      case 1:
-        piecetemp2 = consthook.PIECEARR.piece1;
-        break;
-      case 2:
-        piecetemp2 = consthook.PIECEARR.piece2;
-        break;
-      case 3:
-        piecetemp2 = consthook.PIECEARR.piece3;
-        break;
-      case 4:
-        piecetemp2 = consthook.PIECEARR.piece4;
-        break;
-      case 5:
-        piecetemp2 = consthook.PIECEARR.piece5;
-        break;
-      case 6:
-        piecetemp2 = consthook.PIECEARR.piece6;
-        break;
-      case 7:
-        piecetemp2 = consthook.PIECEARR.piece7;
-        break;
-      default:
-        break;
-    }
+    piecetemp2 = consthook.PIECEARR[`piece${piecectr}`];
+
     return piecetemp2;
   }
 
@@ -1148,32 +1080,6 @@ function App() {
     return false;
   }
 
-  /*
-  function removeroworig() {
-    let rows = 25;
-    for (var i = rows; i >= 0; i--) {
-      const isEmpty = arr[i].includes("Q");
-      if (!isEmpty) {
-        const isEmpty = arr[i].includes("");
-        if (!isEmpty) {
-          if (!arr[i].includes("H")) {
-            for (var j = 0; j < 9; j++) {
-              arr[i][j] = "H";
-            }
-            updatestage(0, 0);
-
-            return false;
-          } else {
-            //console.log("do nothing");
-          }
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-*/
-
   function removerow() {
     let rows = 25;
     let haveH = 0;
@@ -1309,46 +1215,12 @@ function App() {
     }
   }
 
-  function getBackgroundColor2({ shapex }) {
-    getBackgroundColor(shapex);
-  }
-
-  function getBackgroundColor(shape) {
+  function getBackgroundColor(shapex) {
     if (!startflag) {
       return "#1e003e";
+    } else {
+      return GetBackgroundColor3({ props: shapex });
     }
-
-    if (shape === "H") {
-      return "white";
-    }
-    if (shape === "L") {
-      return "#c842a3";
-    }
-    if (shape === "Q") {
-      return "transparent";
-    }
-    if (shape === "Y") {
-      return "#672f9c";
-    }
-    if (shape === "Z") {
-      return "#afa91a";
-    }
-    if (shape === "S") {
-      return "red";
-    }
-    if (shape === "O") {
-      return "#a08217";
-    }
-    if (shape === "J") {
-      return "#2587be";
-    }
-    if (shape === "I") {
-      return "#2bb534";
-    }
-    if (shape === "E") {
-      return "#3dc0c0";
-    }
-    return "#1e003e";
   }
 
   function rotate() {
@@ -1473,7 +1345,6 @@ function App() {
     setshapearrctr,
     shapearrctr,
     shapearr,
-    //'consthook.PIECEARR.arrdefault',
     setarr,
     setarrcopy,
     arr,
@@ -1498,7 +1369,6 @@ function App() {
     dropspeed,
     setshapearr1,
     shapearr1,
-    //  consthook.PIECE.shape,
     getfilter,
     getborder,
     shapearr2,
@@ -1522,59 +1392,31 @@ function App() {
     fastdrop2,
   };
 
+  const mainprops = {
+    getfilter,
+    getborder,
+    getBackgroundColor,
+    homeprops,
+    arr,
+    gameoverflag,
+  };
+
   return (
     <div className="App">
-      {false && <header className="App-header">TETRISx</header>}
-      <div id="container">
-        <div id="head">
-          <h6 style={{ color: "white" }}> TETRIS CLONE IN REACT JS </h6>
-          <h6> {windowwidth} </h6>
-          <h6> {screenType} </h6>
+      <gameoverflagContext.Provider
+        value={{
+          gameoverflag,
+          setgameoverflag,
+          windowwidth,
+          screenType,
+        }}
+      >
+        {false && <header className="App-header">TETRISx</header>}
+        <div id="container">
+          <Main mainprops={mainprops} />
+          <Sidemenu sidemenuprop={sidemenuprop} />
         </div>
-        <div className="cubeall" id="second">
-          {[
-            0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-            19, 20, 21, 22, 23, 24, 25,
-          ].map((row, rowIndex) => (
-            <div className="cube-row" key={rowIndex}>
-              {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((column, letterIndex) => (
-                <div className="letterB">
-                  <div
-                    className="letter"
-                    key={letterIndex}
-                    style={{
-                      //color: (useGetBGcolor = { row, column }),
-                      color: getBackgroundColor(arr[row][column]), // "white"
-                      filter: getfilter(arr[row][column]),
-                      backgroundColor: getBackgroundColor(arr[row][column]),
-                      border: getborder(arr[row][column]),
-                    }}
-                  >
-                    {arr[row][column]}
-                  </div>
-                </div>
-              ))}
-            </div>
-          ))}
-          <Home homeprops={homeprops} />
-        </div>
-
-        <div id="third">
-          <div id="fourth">
-            {gameoverflag && (
-              <div className="game1" id="gameover1">
-                <h3 id="blinkme"> GAME OVER</h3>
-              </div>
-            )}
-            {/*sidemenu */}
-            <div>
-              <Sidemenu sidemenuprop={sidemenuprop} />
-            </div>
-          </div>
-        </div>
-
-        {/*watchmenu*/}
-      </div>
+      </gameoverflagContext.Provider>
     </div>
   );
 }

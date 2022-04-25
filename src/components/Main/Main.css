@@ -1,0 +1,53 @@
+.cubeall {
+  border: green solid;
+  display: block;
+  width: 200px;
+  height: 445px;
+  margin: 0px;
+  margin-bottom: 0px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: white; /* #1e003e;*/
+}
+
+#second {
+  float: left;
+  border: green solid;
+  display: block;
+  width: 155px; /* 200px; */
+
+  margin-left: 20px;
+  margin-bottom: 100px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e003e;
+}
+
+.cube-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  margin-right: 10px;
+}
+
+.letterB {
+  background-color: "yellow";
+}
+
+.letter {
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  width: 15px; /*20px; */
+  height: 15px; /*20px; */
+  border-radius: 5px;
+  border-width: 1px;
+  /* border: 1px solid #1e003e;*/
+  border: 1px solid silver;
+}
