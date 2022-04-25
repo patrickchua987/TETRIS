@@ -11,7 +11,7 @@ const Main = ({ mainprops }) => {
   return (
     <>
       <div id="head">
-        <h6 style={{ color: "white" }}> TETRIS CLONE IN REACT v1.3</h6>
+        <h6 style={{ color: "white" }}> TETRIS CLONE IN REACT v1.4</h6>
         <h6> {windowwidth} </h6>
         <h6> {screenType} </h6>
       </div>
